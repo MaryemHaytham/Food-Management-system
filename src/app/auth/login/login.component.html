@@ -9,15 +9,35 @@
         <div class="px-5">
             <h2>Login</h2>
             <p>Welcome Back! Please enter your details</p>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1"><i class="fa fa-mobile"></i></span>
-                <input type="text" class="form-control" placeholder="Enter Your Email" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <button class="main w-100">Login</button>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-mobile"></i></span>
+                    <input formControlName="email" type="email" class="form-control" name="email" placeholder="Enter Your Email" aria-label="Username" aria-describedby="basic-addon1">
+                    <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="alert alert-danger p-1 small w-100 mx-auto">
+                        <p class="mb-0" *ngIf="loginForm.get('email')?.getError('required')">Email Is Invalid</p>
+                        <p class="mb-0" *ngIf="loginForm.get('email')?.getError('email')">Email Is Invalid</p>
+                        
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
+                    <input formControlName="password" [type]="hide?'password':'text'" class="form-control" name="password" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                    <a class="show-password" (click)="this.hide= !this.hide">
+                        <i class="fa-solid" [class]="hide?'fa-eye-slash':'fa-eye'"></i>
+                    </a>
+                    <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="alert alert-danger p-1 small w-100 mx-auto">
+                        <p class="mb-0" *ngIf="loginForm.get('password')?.getError('required')">Password Is Required</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between ">
+                    <a class="text-second text-decoration-none" routerLink="/auth/register">Register Now?</a>
+                    <a class="text-main text-decoration-none ">Forgot password?</a>
+                </div>
+                <button [disabled]="loginForm.invalid"  class="main w-100 btn">
+                    <span *ngIf="isLoading==false">Login</span>
+                    <span *ngIf="isLoading==true"><i class="fa-solid fa-spinner fa-spin text-white"></i></span>
+                </button>
+            </form>
             
         </div>
     </div>
