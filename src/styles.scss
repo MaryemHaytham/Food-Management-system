@@ -65,6 +65,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     &.main{
       background-color: #4aa35a;
       color: #fff;
+      :disabled{
+        opacity: 0.5;
+      }
     }
     &.second{
       background-color: red;
@@ -72,4 +75,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
   }
 
+}
+
+.show-password{
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+  transform: translate(-25%, -25%);
+}
+
+.text-main{
+  color: #4aa35a !important;
+}
+.text-second{
+  color: #3a3a3d !important;
+}
+.bg-main{
+  background-color:#4aa35a !important;
+}
+.bg-second{
+  background-color:#3a3a3d !important;
 }
