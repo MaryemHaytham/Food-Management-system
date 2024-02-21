@@ -1,8 +1,11 @@
 
 import { Component } from '@angular/core';
-import { AuthServiceService } from '../services/auth-service.service';
+import { AuthServiceService } from '../../services/auth-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormControlOptions, FormGroup, Validators } from '@angular/forms';
+import { VerifyAccountComponent } from '../verify-account/verify-account.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +13,8 @@ import { FormControl, FormControlOptions, FormGroup, Validators } from '@angular
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+
+  imgSrc:any;
 
   hide:boolean = true;
   isLoading:boolean=false;
@@ -32,7 +37,7 @@ export class RegisterComponent {
       Validators.email]),
     phoneNumber: new FormControl('',[
       Validators.required, 
-      Validators.pattern(/^01[0125][0-9]{8}$/)]),
+      ]),
     password: new FormControl('' ,[
       Validators.required,
        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$')]),
@@ -55,12 +60,23 @@ export class RegisterComponent {
 
   }
 
-  constructor(private _AuthServiceService:AuthServiceService, private _ToastrService:ToastrService){}
+  constructor(private _Router:Router,public dialog: MatDialog,private _AuthServiceService:AuthServiceService, private _ToastrService:ToastrService){}
   
   onSubmit(data:FormGroup){
+    let myData = new FormData();
+    myData.append('userName', data.value.userName);
+    myData.append('email', data.value.email);
+    myData.append('phoneNumber', data.value.phoneNumber);
+    myData.append('country', data.value.country);
+    myData.append('password', data.value.password);
+    myData.append('confirmPassword', data.value.confirmPassword);
+    myData.append('profileImage', this.imgSrc);
+
+
+
     this.isLoading= true;
     console.log(data);
-    this._AuthServiceService.onRegister(data.value).subscribe({
+    this._AuthServiceService.onRegister(myData).subscribe({
       next:(res)=>{
         console.log(res);
       },
@@ -72,10 +88,52 @@ export class RegisterComponent {
       complete:()=>{
         this.isLoading= false;
         this._ToastrService.success('You successfully Registered','Success')
+        this.openDialog();
       }
     })
   }
 
+  files: File[] = [];
 
+onSelect(event:any) {
+  console.log(event);
+  this.files.push(...event.addedFiles);
+}
+
+onRemove(event:any) {
+  console.log(event);
+  this.imgSrc=event.addFiles[0];
+  console.log(this.imgSrc)
+  this.files.splice(this.files.indexOf(event), 1);
+}
+
+openDialog(){
+  const dialogRef = this.dialog.open(VerifyAccountComponent, {
+    data: {name:''},
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed',result);
+    if(result){
+      this.onVerifyAccount(result);
+    }
+    
+  });
+}
+onVerifyAccount(data:any){
+  this._AuthServiceService.onVerify(data).subscribe({
+    next:(res)=>{
+      console.log(res);
+    },
+    error:()=>{
+
+    },
+    complete:()=>{
+      this._ToastrService.success('Account Active Successfully','Success')
+      this._Router.navigate(['/auth/login'])
+    }
+  })
+
+}
 
 }

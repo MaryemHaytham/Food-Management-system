@@ -8,6 +8,17 @@
             <p>Welcome Back! Please enter your details</p>
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
                 <div class="row">
+                    <div class="col-12">
+                        <ngx-dropzone (change)="onSelect($event)">
+                            <ngx-dropzone-label>Drop image!</ngx-dropzone-label>
+                            <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-preview> -->
+                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+                                <ngx-dropzone-label></ngx-dropzone-label>
+                              </ngx-dropzone-image-preview>
+                        </ngx-dropzone>
+                    </div>
                     <div class="col-md-6">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-mobile"></i></span>
@@ -81,7 +92,8 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <a class="text-main text-decoration-none" routerLink="/auth/login">Login Now?</a>
+                    <a class="text-second text-decoration-none " routerLink="/auth/login">Login Now?</a>
+                    <a (click)="openDialog()" class="text-main text-decoration-none ">Have a code?</a>
                 </div>
                 <button [disabled]="registerForm.invalid" class="main w-100 btn">
                     <span *ngIf="isLoading==false">Register</span>
