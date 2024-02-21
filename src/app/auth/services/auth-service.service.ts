@@ -13,8 +13,18 @@ export class AuthServiceService {
   onLogin(data: ILogin){
     return this._HttpClient.post('Users/Login', data)
   }
-  onRegister(data: IRegister){
+  onRegister(data: any){
     return this._HttpClient.post('Users/Register', data)
   }
+  onVerify(data: any){
+    return this._HttpClient.put('Users/verify', data)
+  }
+  onForgotPassword(data: any){
+    return this._HttpClient.post('Users/Reset/Request', data)
+  }
+  onChangePassword(data: any){
+    return this._HttpClient.post('Users/Reset', data)
+  }
+
 
 }
