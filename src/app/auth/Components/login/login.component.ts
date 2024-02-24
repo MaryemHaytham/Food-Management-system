@@ -29,10 +29,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit(data:FormGroup){
     this.isLoading= true;
-    console.log(data);
+    console.log(data.value);
     this._AuthServiceService.onLogin(data.value).subscribe({
-      next:(res)=>{
+      next:(res:any)=>{
         console.log(res);
+        
+        localStorage.setItem('userToken', res.token)
+        this._AuthServiceService.getProfile();
       },
       error:(err:any)=>{
         this.isLoading= false;

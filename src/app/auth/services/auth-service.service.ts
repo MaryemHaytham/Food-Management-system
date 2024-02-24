@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 import { IRegister } from 'src/app/models/iregister';
 import { ILogin } from 'src/app/models/login';
 
@@ -7,8 +8,29 @@ import { ILogin } from 'src/app/models/login';
   providedIn: 'root'
 })
 export class AuthServiceService {
+  //token = localStorage.getItem('userToken')
+  role : string | any = '';
 
-  constructor(private _HttpClient:HttpClient) { }
+  constructor(private _HttpClient:HttpClient) {
+    
+    if(localStorage.getItem('userToken')!==null){
+      this.getProfile();
+    }
+   }
+   
+  getProfile(){
+    let encoded:any=localStorage.getItem('userToken');
+    let decoded:any=jwtDecode(encoded);
+    localStorage.setItem('userRole',decoded.userGroup);
+    localStorage.setItem('userName',decoded.userName)
+    console.log(decoded)
+    this.getRole();
+  }
+  getRole(){
+    if(localStorage.getItem('userToken')!==null && localStorage.getItem('userRoke')!==null){
+      this.role = localStorage.getItem('userRole')
+    }
+  }
 
   onLogin(data: ILogin){
     return this._HttpClient.post('Users/Login', data)
