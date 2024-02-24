@@ -8,17 +8,7 @@
             <p>Welcome Back! Please enter your details</p>
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
                 <div class="row">
-                    <div class="col-12">
-                        <ngx-dropzone (change)="onSelect($event)">
-                            <ngx-dropzone-label>Drop image!</ngx-dropzone-label>
-                            <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                            </ngx-dropzone-preview> -->
-                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
-                                <ngx-dropzone-label></ngx-dropzone-label>
-                              </ngx-dropzone-image-preview>
-                        </ngx-dropzone>
-                    </div>
+                    
                     <div class="col-md-6">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-mobile"></i></span>
@@ -72,23 +62,34 @@
                             <a class="show-password" (click)="this.hide= !this.hide">
                                 <i class="fa-solid" [class]="hide?'fa-eye-slash':'fa-eye'"></i>
                             </a>
-                            <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="alert alert-danger p-1 small w-100 mx-auto">
+                        </div>
+                        <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="alert alert-danger p-1 small w-100 mx-auto">
                                 <p class="mb-0" *ngIf="registerForm.get('password')?.getError('required')">Password Is Required</p>
-                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="input-group mb-3">
+                        <div class="input-group ">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
                             <input formControlName="confirmPassword" [type]="hide?'password':'text'" class="form-control" name="confirmPassword" placeholder="confirmPassword" aria-label="confirmPassword" aria-describedby="basic-addon1">
                             <a class="show-password" (click)="this.hide= !this.hide">
                                 <i class="fa-solid" [class]="hide?'fa-eye-slash':'fa-eye'"></i>
                             </a>
-                            <div *ngIf="registerForm.get('confirmPassword')?.errors && registerForm.get('confirmPassword')?.touched" class="alert alert-danger p-1 small w-100 mx-auto">
-                                <p class="mb-0" *ngIf="registerForm.get('confirmPassword')?.getError('required')">confirmPassword Is Required</p>
-                                <p class="mb-0" *ngIf="registerForm.get('confirmPassword')?.getError('pattern')">Must be at least 8 chars</p>
-                            </div>
                         </div>
+                        <div *ngIf="registerForm.get('confirmPassword')?.errors && registerForm.get('confirmPassword')?.touched" class="alert alert-danger p-2  small w-100 mx-auto">
+                            <p class="mb-0" *ngIf="registerForm.get('confirmPassword')?.getError('required')">confirmPassword Is Required</p>
+                            <p class="mb-0" *ngIf="registerForm.get('confirmPassword')?.getError('pattern')">Must be at least 8 chars</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <ngx-dropzone (change)="onSelect($event)" [multiple]="false">
+                            <ngx-dropzone-label>Drop image!</ngx-dropzone-label>
+                            <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-preview> -->
+                            <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)" >
+                                <ngx-dropzone-label></ngx-dropzone-label>
+                              </ngx-dropzone-image-preview>
+                        </ngx-dropzone>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">

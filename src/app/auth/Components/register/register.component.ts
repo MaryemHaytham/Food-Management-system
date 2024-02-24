@@ -103,7 +103,6 @@ onSelect(event:any) {
 onRemove(event:any) {
   console.log(event);
   this.imgSrc=event.addFiles[0];
-  console.log(this.imgSrc)
   this.files.splice(this.files.indexOf(event), 1);
 }
 
