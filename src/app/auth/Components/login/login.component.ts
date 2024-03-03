@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   hide:boolean = true;
   isLoading:boolean=false;
 
-  constructor(private _AuthServiceService:AuthServiceService, private _ToastrService:ToastrService){}
+  constructor(private _router:Router,private _AuthServiceService:AuthServiceService, private _ToastrService:ToastrService){}
 
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
       complete:()=>{
         this.isLoading= false;
         this._ToastrService.success('You successfully Loggedin','Success')
+        this._router.navigate(['/dashboard'])
       }
     })
   }
