@@ -25,8 +25,8 @@ onAddCategory(data:string):Observable<any>{
   return this._HttpClient.post('Category',{name:data})
 
 }
-onEditCategory(data:any):Observable<any>{
-  return this._HttpClient.put(`Category/${data.id}`,{name:data.name})
+onEditCategory(name:string,id:string):Observable<any>{
+  return this._HttpClient.put(`Category/{id}`,{name})
 
 }
 onDeleteCategory(id:number):Observable<any>{
