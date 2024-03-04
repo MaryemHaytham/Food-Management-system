@@ -69,17 +69,17 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  openEditCategoryDialog(categoryData:any){
+  openEditCategoryDialog(categoryData:any):void{
     console.log(categoryData)
     const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-      data:categoryData
+      data:categoryData.name
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result)
       if(result){
-        this.editCategory(result);
+        this.editCategory(result, categoryData.id);
       }
     });
   }
@@ -113,11 +113,12 @@ export class CategoriesComponent implements OnInit {
     })
   }
 
-  editCategory(categoryItem:any){
-    this._CategoryService.onEditCategory(categoryItem).subscribe({
+  editCategory(name:string,id:string){
+    this._CategoryService.onEditCategory(name,id).subscribe({
       next:(res) => {
         console.log(res);
-      },error:()=>{
+      },error:(err:any)=>{
+        console.log(err)
 
       },complete:()=> {
           this.getCategories();

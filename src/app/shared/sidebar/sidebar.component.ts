@@ -61,7 +61,7 @@ export class SidebarComponent {
   },
   {
     text:"Category",
-    link:'home5',
+    link:'/dashboard/admin/category',
     icon:"fa-solid fa-house",
     isActive:this.isAdmin()
   }
