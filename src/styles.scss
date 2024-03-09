@@ -106,3 +106,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .myPointer{
   cursor: pointer;
 }
+.header-page{
+  background-image: url(./assets/images/header-bg-svg.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 24vh;
+  border-radius: 15px;
+  background-color: #009247;
+  margin-top: 10px;
+
+}

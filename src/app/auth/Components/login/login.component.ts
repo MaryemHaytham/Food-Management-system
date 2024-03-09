@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       complete:()=>{
         this.isLoading= false;
         this._ToastrService.success('You successfully Loggedin','Success')
-        this._router.navigate(['/dashboard'])
+        this._router.navigate(['/dashboard/home'])
       }
     })
   }
