@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -50,9 +50,9 @@ onRemove(event:any) {
 
 
   recipeForm = new FormGroup({
-    name: new FormControl(null),
-    description: new FormControl(null),
-    price: new FormControl(null),
+    name: new FormControl(null,[Validators.maxLength(25)]),
+    description: new FormControl(null,[Validators.maxLength(50)]),
+    price: new FormControl(null,[Validators.maxLength(5)]),
     tagId: new FormControl(null),
     recipeImage: new FormControl(null),
     categoriesIds: new FormControl(null),
