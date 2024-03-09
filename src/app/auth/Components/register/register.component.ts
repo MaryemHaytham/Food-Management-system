@@ -18,6 +18,7 @@ export class RegisterComponent {
 
   hide:boolean = true;
   isLoading:boolean=false;
+  confirmHide:boolean = true;
 
 
 

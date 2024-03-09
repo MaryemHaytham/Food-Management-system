@@ -13,6 +13,9 @@ import { RouterModule } from '@angular/router';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { DeleteComponent } from './delete/delete.component';
+import {MatSelectModule} from '@angular/material/select';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -24,8 +27,8 @@ import { DeleteComponent } from './delete/delete.component';
     DeleteComponent
   ],
   imports: [
-    FormsModule,MatTableModule,MatPaginatorModule,MatButtonModule,MatMenuModule,MatIconModule,CommonModule,ReactiveFormsModule,HttpClientModule,ToastrModule.forRoot(),MatDialogModule,RouterModule
+    MatCardModule,NgxDropzoneModule,MatSelectModule,FormsModule,MatTableModule,MatPaginatorModule,MatButtonModule,MatMenuModule,MatIconModule,CommonModule,ReactiveFormsModule,HttpClientModule,ToastrModule.forRoot(),MatDialogModule,RouterModule
   ],
-  exports:[DeleteComponent,FormsModule,MatTableModule, MatPaginatorModule,MatButtonModule,MatMenuModule,MatIconModule,NavbarComponent,SidebarComponent,ReactiveFormsModule, HttpClientModule,MatDialogModule,ReactiveFormsModule,RouterModule]
+  exports:[MatCardModule,NgxDropzoneModule,MatSelectModule,DeleteComponent,FormsModule,MatTableModule, MatPaginatorModule,MatButtonModule,MatMenuModule,MatIconModule,NavbarComponent,SidebarComponent,ReactiveFormsModule, HttpClientModule,MatDialogModule,ReactiveFormsModule,RouterModule]
 })
 export class SharedModule { }

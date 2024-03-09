@@ -37,32 +37,32 @@ export class SidebarComponent {
   },
   {
     text:'Users',
-    link:'home1',
-    icon:"fa-solid fa-house",
+    link:'/dashboard/admin/users',
+    icon:"fa-solid fa-users",
     isActive:this.isAdmin()
   },
   {
     text:'Recipes',
-    link:'home2',
+    link:'/dashboard/user/recipes',
     icon:"fa-solid fa-house",
     isActive:this.isUser()
   },
   {
     text:'Favorites',
-    link:'home3',
+    link:'/dashboard/user/favorites',
     icon:"fa-solid fa-house",
     isActive:this.isUser()
   },
   {
     text:'Recipes',
-    link:'home4',
-    icon:"fa-solid fa-house",
+    link:'/dashboard/admin/recipes',
+    icon:"fa-solid fa-receipt",
     isActive:this.isAdmin()
   },
   {
-    text:"Category",
+    text:"Categories",
     link:'/dashboard/admin/category',
-    icon:"fa-solid fa-house",
+    icon:"fa-solid fa-layer-group",
     isActive:this.isAdmin()
   }
 ]
