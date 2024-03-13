@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AuthServiceService } from 'src/app/auth/services/auth-service.service';
 
 
@@ -44,13 +44,13 @@ export class SidebarComponent {
   {
     text:'Recipes',
     link:'/dashboard/user/recipes',
-    icon:"fa-solid fa-house",
+    icon:"fa-solid fa-receipt",
     isActive:this.isUser()
   },
   {
     text:'Favorites',
     link:'/dashboard/user/favorites',
-    icon:"fa-solid fa-house",
+    icon:"fa-solid fa-heart",
     isActive:this.isUser()
   },
   {
@@ -66,6 +66,5 @@ export class SidebarComponent {
     isActive:this.isAdmin()
   }
 ]
-   
 
 }

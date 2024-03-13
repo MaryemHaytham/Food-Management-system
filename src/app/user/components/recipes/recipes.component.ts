@@ -7,6 +7,7 @@ import { ICategory } from 'src/app/admin/models/category';
 import { CategoryService } from 'src/app/admin/Services/Category.service';
 import { HelperService } from 'src/app/shared/helper.service';
 import { UserFavoritesService } from '../../services/userFavorites.service';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 
 @Component({
   selector: 'app-recipes',
@@ -86,17 +87,36 @@ export class RecipesComponent {
     })
   }
   
-  // addtoFav(favRecipe:string){
-  //   this._UserFavoritesService.addToFavorites(favRecipe).subscribe({
-  //     next:(res) => {
-  //       console.log(res);
-  //     },error:()=>{
+  addtoFav(id:number){
+    this._UserFavoritesService.onAddToFavorites(id).subscribe({
+      next:(res) => {
+        console.log(res);
+      },error:(err:any)=>{
+        console.log(err)
 
-  //     },complete:()=> {
-  //         this._ToastrService.success('Added Successfuly') 
+      },complete:()=> {
+          this._ToastrService.success('Added To Favorite Successfuly') 
 
-  //     },
-  //   })
-  // }
+      },
+    })
+  }
+  openRecipeDetailes(item:any){
+    const dialogRef = this.dialog.open(RecipeDetailComponent, {
+      data:item
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result)
+      if(result){
+        this.addtoFav(result)
+        
+        
+      }
+    });
+
+  }
+ 
+
 
 }

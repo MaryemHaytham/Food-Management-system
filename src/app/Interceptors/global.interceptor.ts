@@ -5,14 +5,20 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, finalize } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable()
 export class GlobalInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private spinner: NgxSpinnerService) { 
+    
+  }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    
+    
+   
     const token = localStorage.getItem('userToken');
     const baseUrl: string = 'https://upskilling-egypt.com:443/api/v1/'
 
@@ -32,6 +38,16 @@ export class GlobalInterceptor implements HttpInterceptor {
     })
 
 
-    return next.handle(cloned);
+
+    this.spinner.show();
+    
+
+
+    return next.handle(cloned).pipe(
+      finalize(() => {
+        this.spinner.hide(); 
+      })
+    );
   }
+  
 }

@@ -21,5 +21,9 @@ export class UsersService {
     return this._HttpClient.delete(`Users/${id}`,)
   
   }
+  onGetUser(id:number):Observable<any>{
+    return this._HttpClient.delete(`Users/${id}`,)
+  
+  }
 
 }

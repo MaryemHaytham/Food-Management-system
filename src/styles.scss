@@ -69,11 +69,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         opacity: 0.5;
       }
     }
+    
     &.second{
       background-color: red;
       color: #fff;
     }
   }
+
 
 }
 
@@ -115,5 +117,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-radius: 15px;
   background-color: #009247;
   margin-top: 10px;
+
+}
+
+.outline-main{
+  border: 1px solid #4aa35a;
+  background: #fff;
+  color: #4aa35a;
+  transition: all .5s;
+  &:hover{
+    background: #4aa35a;
+    color: #fff;
+  }
 
 }

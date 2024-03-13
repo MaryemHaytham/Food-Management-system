@@ -100,7 +100,8 @@
                 <th>Modification Date</th>
                 <th>Tag</th>
                 <th>Category</th>
-                <th>Actions</th>
+                <th>Action</th>
+               
             </thead>
             <tbody>
                 <tr *ngFor="let item of tableData">
@@ -114,22 +115,11 @@
                     <td>{{item.modificationDate|date}}</td>
                     <td>{{item.tag.name}}</td>
                     <td><span *ngFor="let item of item.category">{{item.name}} , </span></td>
-                    <td>
-                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                        <mat-icon color="primary">more_horiz</mat-icon>
-                      </button>
-                      <mat-menu #menu="matMenu">
-                        <!--  -->
-                        <button mat-menu-item [routerLink]="[ '/dashboard/user/recipes/viewRecipe' ]">
-                          <mat-icon color="primary">visibility</mat-icon>
-                          <span>View</span>
-                        </button>
-                        <button mat-menu-item >
-                          <mat-icon color="primary" >favorite</mat-icon>
-                          <span>Favorite</span>
-                        </button>
-                      </mat-menu>
-                      </td>
+                    <td >
+                      <a class="myPointer text-main" (click)="openRecipeDetailes(item)">
+                        <i class="fa-solid fa-eye"></i>
+                      </a>
+                    </td>
                 </tr>
 
             </tbody>

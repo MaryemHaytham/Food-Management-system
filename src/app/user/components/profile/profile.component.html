@@ -1,0 +1,42 @@
+
+<section>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-9 mx-auto">
+                    <div class="input-group mb-3">
+                        <input formControlName="userName" type="text" class="form-control" name="name" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input formControlName="email" type="email" class="form-control" name="email" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input formControlName="country" type="text" class="form-control" name="country" placeholder="Country" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input formControlName="phoneNumber" type="number" class="form-control" name="phoneNumber" placeholder="Phone Number" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    
+                      <div class="col-12">
+                        <ngx-dropzone (change)="onSelect($event)" [multiple]="false">
+                            <ngx-dropzone-label>Drop image!</ngx-dropzone-label>
+                            
+                            <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)" >
+                                <ngx-dropzone-label></ngx-dropzone-label>
+                              </ngx-dropzone-image-preview>
+                        </ngx-dropzone>
+                    </div>
+                    <div>
+                        <hr>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-outline-success mx-2">Cancel</button>
+                            <button class=" bg-success text-white btn px-4">Save</button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</section>
