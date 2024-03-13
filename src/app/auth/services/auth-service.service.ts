@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
+import { Observable } from 'rxjs';
 import { IRegister } from 'src/app/models/iregister';
 import { ILogin } from 'src/app/models/login';
 
@@ -52,6 +53,15 @@ export class AuthServiceService {
   onChangePassword(data: any){
     return this._HttpClient.post('Users/Reset', data)
   }
+  onUserChangePassword(data:any){
+    return this._HttpClient.put('Users/ChangePassword', data)
+  }
+  onChangeProfile():Observable<any>{
+    return this._HttpClient.get('Users/currentUser')
+  }
+  onEditProfile(data:any):Observable<any>{
+    return this._HttpClient.put('Users',data)
+  }
   logout(){
     localStorage.removeItem('userToken');
     localStorage.removeItem('userRole');
@@ -59,6 +69,9 @@ export class AuthServiceService {
     this._Router.navigate(["/auth/login"])
 
   }
+
+  
+  
 
 
 }

@@ -13,5 +13,6 @@ export class UserRecipeService {
   getAllRecipes(data:any):Observable<any>{
     return this._HttpClient.get('Recipe',{params :data})
   }
+  
 
 }

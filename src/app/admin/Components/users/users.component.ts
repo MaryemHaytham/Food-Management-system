@@ -6,6 +6,7 @@ import { UsersService } from '../../Services/users.service';
 import { Users } from '../../models/users';
 import { PageEvent } from '@angular/material/paginator';
 import { DeleteComponent } from 'src/app/shared/delete/delete.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @Component({
   selector: 'app-users',
@@ -95,6 +96,21 @@ export class UsersComponent implements OnInit{
         
       }
     });
+  }
+  openUserDetailes(item:any){
+    const dialogRef = this.dialog.open(UserDetailsComponent, {
+      data:item
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result)
+      if(result){
+        
+        
+      }
+    });
+
   }
 
   // addCategory(categoryName:string){

@@ -34,8 +34,9 @@ ngOnInit(): void {
     }
     
 }
-files: File[] = [];
 imgSrc:any;
+files: File[] = [];
+
 
 onSelect(event:any) {
   console.log(event);
@@ -130,7 +131,7 @@ onRemove(event:any) {
           categoriesIds: this.recipeDate.category.map((x:any)=>x.id),
 
         })
-        this._ToastrService.success('Updated Successfuly');
+        
       }
 
     })

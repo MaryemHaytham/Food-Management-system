@@ -10,14 +10,14 @@ export class UserFavoritesService {
   constructor( private _HttpClient:HttpClient) { }
 
 
-  getAllFavorites(data:any):Observable<any>{
-    return this._HttpClient.get('userRecipe',{params :data})
+  getAllFavorites():Observable<any>{
+    return this._HttpClient.get('userRecipe')
   }
-  addToFavorites(data:any):Observable<any>{
-    return this._HttpClient.post('userRecipe',{params :data})
+  onAddToFavorites(id:number):Observable<any>{
+    return this._HttpClient.post('userRecipe',{recipeId:id})
   }
   deleteFavorite(id:number):Observable<any>{
-    return this._HttpClient.get(`userRecipe/${id}`)
+    return this._HttpClient.delete(`userRecipe/${id}`)
   }
 
 }
