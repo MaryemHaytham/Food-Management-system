@@ -17,8 +17,6 @@ export class RecipesService {
 
   onAddRecipe(data:any):Observable<any>{
     return this._HttpClient.post('Recipe',data)
-
-
   }
   onDeleteRecipe(id:number):Observable<any>{
     return this._HttpClient.delete(`Recipe/${id}`,)
@@ -28,6 +26,10 @@ export class RecipesService {
   getRecipeById(id:number) :Observable<any>{
     return this._HttpClient.get(`Recipe/${id}`)
 
+  }
+  onEditRecipe(id:number,data:any):Observable<any>{
+    return this._HttpClient.put(`Recipe/${id}`,data)
+  
   }
 
 

@@ -55,19 +55,19 @@
     </div>
     <div *ngIf="tableData.length>0">
           
-        <table  class="table table-striped">
-            <thead>
+        <table  class="table table-striped ">
+            <thead class="text-center">
                 <th>Name</th>
-                <th  class="text-center">image</th>
+                <th >image</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>Creation Date</th>
-                <th>Modification Date</th>
+                <th>Creation</th>
+                <th>Modification</th>
                 <th>Tag</th>
                 <th>Category</th>
                 <th>Actions</th>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 <tr *ngFor="let item of tableData">
                     <td>{{item.name}}</td>
                     <td class=" w-25 text-center">
@@ -105,6 +105,7 @@
               [pageSize]="tableResponse?.pageSize"
               [pageSizeOptions]="pageSizeOptions"
               [pageIndex]="tableResponse?.pageNumber"
+              (page)="handlePageEvent($event)"
               aria-label="Select page">
         </mat-paginator>
         

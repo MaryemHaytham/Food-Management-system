@@ -40,12 +40,14 @@ files: File[] = [];
 
 onSelect(event:any) {
   console.log(event);
+  debugger
+  this.imgSrc=event.addedFiles[0];
+  this.recipeForm.get('imagePath')?.setValue(this.imgSrc);
   this.files.push(...event.addedFiles);
 }
 
 onRemove(event:any) {
   console.log(event);
-  this.imgSrc=event.addFiles[0];
   this.files.splice(this.files.indexOf(event), 1);
 }
 
@@ -55,7 +57,7 @@ onRemove(event:any) {
     description: new FormControl(null,[Validators.maxLength(50)]),
     price: new FormControl(null,[Validators.maxLength(5)]),
     tagId: new FormControl(null),
-    recipeImage: new FormControl(null),
+    imagePath: new FormControl(null,[]),
     categoriesIds: new FormControl(null),
   })
 
@@ -90,20 +92,40 @@ onRemove(event:any) {
     myData.append('price',data.value.price);
     myData.append('tagId',data.value.tagId);
     myData.append('categoriesIds',data.value.categoriesIds);
-    myData.append('recipeImage',this.imgSrc);
-    this._RecipesService.onAddRecipe(myData).subscribe({
-      next :(res) =>{
-        console.log(res)
-      },
-      error:()=>{
-
-      },
-      complete:()=>{
-        this._ToastrService.success('Added Successfuly');
-        this._router.navigate(['/dashboard/admin/recipes']);
-
-      }
-    })
+    myData.append('imagePath',this.imgSrc,this.imgSrc.name);
+    if(this.recipeId){
+      this._RecipesService.onEditRecipe(this.recipeId, myData).subscribe({
+        next :(res) =>{
+          console.log(res)
+        },
+        error:()=>{
+  
+        },
+        complete:()=>{
+          this._ToastrService.success('Edited Successfuly');
+          this._router.navigate(['/dashboard/admin/recipes']);
+  
+        }
+      })
+  
+      
+    }
+    else{
+      this._RecipesService.onAddRecipe(myData).subscribe({
+        next :(res) =>{
+          console.log(res)
+        },
+        error:()=>{
+  
+        },
+        complete:()=>{
+          this._ToastrService.success('Added Successfuly');
+          this._router.navigate(['/dashboard/admin/recipes']);
+  
+        }
+      })
+    }
+    
 
   }
 
@@ -112,8 +134,10 @@ onRemove(event:any) {
   getRecipeById(id:number){
     this._RecipesService.getRecipeById(id).subscribe({
       next:(res)=>{
+
         console.log(res)
         this.recipeDate=res
+
       },
       error:()=>{
         
@@ -121,13 +145,13 @@ onRemove(event:any) {
       complete:()=>{
         let arr :any[]=[...this.recipeDate.category]
         let ids = arr.map(x => x.id);
-        //this.recipeForm.patchValue(this.recipeDate)
+        this.imgSrc = this.imgUrl+this.recipeDate.imagePath
         this.recipeForm.patchValue({
           name:this.recipeDate.name,
           description:this.recipeDate.description ,
           price:this.recipeDate.price,
           tagId: this.recipeDate.tag.id,
-          recipeImage:this.imgUrl+this.recipeDate.recipeImage ,
+          imagePath:this.recipeDate.imagePath ,
           categoriesIds: this.recipeDate.category.map((x:any)=>x.id),
 
         })
