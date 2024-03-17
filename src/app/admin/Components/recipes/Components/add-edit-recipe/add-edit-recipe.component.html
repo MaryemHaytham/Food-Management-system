@@ -45,12 +45,12 @@
                       </div>
                       <div class="col-12">
                         <ngx-dropzone (change)="onSelect($event)" [multiple]="false">
-                            <ngx-dropzone-label>Drop image!</ngx-dropzone-label>
-                            <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                            </ngx-dropzone-preview> -->
-                            <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)" >
-                                <ngx-dropzone-label></ngx-dropzone-label>
+                            <ngx-dropzone-label *ngIf="!imgSrc">Drag and Drop image <span class="text-success fw-bold">Choose image </span>to upload</ngx-dropzone-label>
+                            <ngx-dropzone-label *ngIf="imgSrc"> 
+                            <img [src]="imgSrc" alt="" class="w-25">
+                            </ngx-dropzone-label>
+                            <ngx-dropzone-image-preview [removable]="true" (removed)="onRemove(f)" ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+                                <ngx-dropzone-label>({{ f.type }})</ngx-dropzone-label>
                               </ngx-dropzone-image-preview>
                         </ngx-dropzone>
                     </div>

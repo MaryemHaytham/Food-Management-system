@@ -65,42 +65,12 @@ export class RecipesComponent {
 
 
 
-  // handlePageEvent(e: PageEvent) {
-  //   this.pageSize = e.pageSize;
-  //   this.pageIndex = e.pageIndex;
-  //   this.getRecipes();
-  // }
+  handlePageEvent(e: PageEvent) {
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+    this.getRecipes();
+  }
 
-  // openAddCategoryDialog(){
-  //   const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-      
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     console.log(result)
-  //     if(result){
-  //       this.addCategory(result);
-  //     }
-
-      
-  //   });
-  // }
-
-  // openEditCategoryDialog(categoryData:any):void{
-  //   console.log(categoryData)
-  //   const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-  //     data:categoryData.name
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     console.log(result)
-  //     if(result){
-  //       this.editCategory(result, categoryData.id);
-  //     }
-  //   });
-  // }
   openDeleteCategoryDialog(categoryData:any){
     console.log(categoryData)
     const dialogRef = this.dialog.open(DeleteRecipeComponent, {

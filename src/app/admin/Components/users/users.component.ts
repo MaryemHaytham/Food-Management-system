@@ -34,7 +34,7 @@ export class UsersComponent implements OnInit{
   searchByName(){}
 
   getAllUsers(){
-    this._usersService.getUsers().subscribe({
+    this._usersService.getUsers(this.pageSize,this.pageIndex,this.searchKey).subscribe({
       next:(res)=>{
         console.log(res.pageSize);
         this.tableResponse = res;
@@ -51,37 +51,6 @@ export class UsersComponent implements OnInit{
     this.pageIndex = e.pageIndex;
     this.getAllUsers;
   }
-
-  // openAddCategoryDialog(){
-  //   const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-      
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     console.log(result)
-  //     if(result){
-  //       this.addCategory(result);
-  //     }
-
-      
-  //   });
-  // }
-
-  // openEditCategoryDialog(categoryData:any):void{
-  //   console.log(categoryData)
-  //   const dialogRef = this.dialog.open(AddEditCategoryComponent, {
-  //     data:categoryData.name
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     console.log(result)
-  //     if(result){
-  //       this.editCategory(result, categoryData.id);
-  //     }
-  //   });
-  // }
   openDeleteUserDialog(userData:any){
     console.log(userData)
     const dialogRef = this.dialog.open(DeleteComponent, {
@@ -113,33 +82,6 @@ export class UsersComponent implements OnInit{
 
   }
 
-  // addCategory(categoryName:string){
-  //   this._usersService.onAddCategory(categoryName).subscribe({
-  //     next:(res) => {
-  //       console.log(res);
-  //     },error:()=>{
-
-  //     },complete:()=> {
-
-  //         this._ToastrService.success('Added Successfuly')
-  //         this.getCategories();
-  //     },
-  //   })
-  // }
-
-  // editCategory(name:string,id:string){
-  //   this._usersService.onEditCategory(name,id).subscribe({
-  //     next:(res) => {
-  //       console.log(res);
-  //     },error:(err:any)=>{
-  //       console.log(err)
-
-  //     },complete:()=> {
-  //         this.getCategories();
-  //         this._ToastrService.success('Updated Successfuly')
-  //     },
-  //   })
-  // }
 
   deleteUser(userId:any){
     this._usersService.onDeleteUser(userId).subscribe({

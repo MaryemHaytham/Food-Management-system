@@ -13,8 +13,10 @@ export class UsersService {
 
   
 
-  getUsers(): Observable<any> {
-    return this._HttpClient.get('Users');
+  getUsers(size:number,Number:number,search:string): Observable<any> {
+    return this._HttpClient.get('Users',{params:{
+      pageSize:size,pageNumber:Number,name:search
+    }});
   }
 
   onDeleteUser(id:number):Observable<any>{
