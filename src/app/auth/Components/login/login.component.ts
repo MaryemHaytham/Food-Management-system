@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   })
 
   hide:boolean = true;
-  isLoading:boolean=false;
+  
 
   constructor(private _router:Router,private _AuthServiceService:AuthServiceService, private _ToastrService:ToastrService){}
 
@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(data:FormGroup){
-    this.isLoading= true;
     console.log(data.value);
     this._AuthServiceService.onLogin(data.value).subscribe({
       next:(res:any)=>{
@@ -39,12 +38,12 @@ export class LoginComponent implements OnInit {
         this._AuthServiceService.getProfile();
       },
       error:(err:any)=>{
-        this.isLoading= false;
+        
         console.log(err);
         this._ToastrService.error(err.error.message,'Error')
       },
       complete:()=>{
-        this.isLoading= false;
+       
         this._ToastrService.success('You successfully Loggedin','Success')
         this._router.navigate(['/dashboard/home'])
       }

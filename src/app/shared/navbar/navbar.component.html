@@ -11,14 +11,14 @@
                     
                     <div  class="ng-container" *ngFor = "let item of Menu">
                       <a [routerLink]="item.link">
-                        <button *ngIf="item.isActive"  mat-menu-item >
-                          <mat-icon [class]="item.icon"></mat-icon>
+                        <button  *ngIf="item.isActive"  mat-menu-item >
+                          <mat-icon class=" text-success" [class]="item.icon"></mat-icon>
                           <span>{{item.text}}</span>
                         </button>
                       </a> 
                     </div>
                     <button (click)="myLogout()"  mat-menu-item>
-                      <mat-icon >logout</mat-icon>
+                      <mat-icon class=" text-success">logout</mat-icon>
                       <span>Logout</span>
                     </button>
                     

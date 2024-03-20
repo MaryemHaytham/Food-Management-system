@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthServiceService } from 'src/app/auth/services/auth-service.service';
+import { UserRecipeService } from '../../services/userRecipe.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -9,18 +11,29 @@ import { AuthServiceService } from 'src/app/auth/services/auth-service.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit{
-  isLoading:boolean=false;
+  userId :number=0
+  imgUrl:any='https:upskilling-egypt.com/'
   imagePath:any;
   userData:any
+  imgSrc:any;
+  files: File[] = [];
+  hide:boolean = true;
+  confirmHide:boolean = true;
 
 
 
 
 
-  constructor(private _ToastrService:ToastrService,private _AuthServiceService:AuthServiceService){}
+  constructor(private _ActivatedRoute:ActivatedRoute,private _router:Router,private _ToastrService:ToastrService,private _AuthServiceService:AuthServiceService,private _UserRecipeService:UserRecipeService){
+    
+  }
 
 
   ngOnInit(): void {
+    
+   
+      this.getUserById();
+    
     
       
   }
@@ -31,6 +44,7 @@ export class ProfileComponent implements OnInit{
       Validators.maxLength(20),
       Validators.pattern('^(?=.*?[a-z])(?=.*?[a-z])(?=.*?[0-9]).{3,20}$')
     ]),
+    imagePath: new FormControl(null,[]),
     country: new FormControl('',[
       Validators.required, 
       Validators.minLength(3), 
@@ -41,6 +55,9 @@ export class ProfileComponent implements OnInit{
     phoneNumber: new FormControl('',[
       Validators.required, 
       ]),
+    confirmPassword:new FormControl(null,[
+      Validators.required, 
+      ])
   })
   onSubmit(data:FormGroup){
     let myData = new FormData();
@@ -48,71 +65,69 @@ export class ProfileComponent implements OnInit{
     myData.append('email', data.value.email);
     myData.append('phoneNumber', data.value.phoneNumber);
     myData.append('country', data.value.country);
-    myData.append('imagePath', this.imagePath);
-
-
-
-
-    this.isLoading= true;
-    console.log();
-    this._AuthServiceService.onEditProfile(data).subscribe({
-      next:(res)=>{
-        console.log(res);
+    myData.append('confirmPassword', data.value.confirmPassword);
+    myData.append('imagePath', this.imgSrc,this.imgSrc.name);
+    this._UserRecipeService.onEditUser(this.userId, myData).subscribe({
+      next :(res) =>{
+        console.log(res)
       },
-      error:(err:any)=>{
-        this.isLoading= false;
-        console.log(err);
-        this._ToastrService.error(err.error.message,'Error')
+      error:()=>{
+
       },
       complete:()=>{
-        this.isLoading= false;
-        this._ToastrService.success('You successfully Updated Your Information','Success')
-        
+        this._ToastrService.success('Edited Successfuly');
+        this._router.navigate(['/dashboard/home']);
+
       }
     })
+
   }
 
-  files: File[] = [];
 
 
-onSelect(event:any) {
-  console.log(event);
-  this.files.push(...event.addedFiles);
-}
+  onSelect(event:any) {
+    console.log(event);
+    debugger
+    this.imgSrc=event.addedFiles[0];
+    this.profileForm.get('imagePath')?.setValue(this.imgSrc);
+    this.files.push(...event.addedFiles);
+  }
+  
+  onRemove(event:any) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
+  }
 
-onRemove(event:any) {
-  console.log(event);
-  this.imagePath=event.addFiles[0];
-  this.files.splice(this.files.indexOf(event), 1);
-}
 
+  getUserById(){
+    this._UserRecipeService.getCurrentUser().subscribe({
+      next:(res)=>{
 
-// getRecipeById(id:number){
-//   this._AuthServiceService.onChangePassword(id).subscribe({
-//     next:(res)=>{
-//       console.log(res)
-//       this.userData=res
-//     },
-//     error:()=>{
-      
-//     },
-//     complete:()=>{
-//       let arr :any[]=[...this.userData.category]
-//       let ids = arr.map(x => x.id);
-//       //this.recipeForm.patchValue(this.recipeDate)
-//       this.profileForm.patchValue({
-//         userName:this.userData.userName,
-//         country:this.userData.country ,
-//         email:this.userData.email,
-//         phoneNumber: this.userData.phoneNumber,
+        debugger
+        this.userId = res.id;
+        this.userData=res
+
+      },
+      error:()=>{
         
+      },
+      complete:()=>{
+        this.imgSrc = this.imgUrl+this.userData.imagePath
+        this.profileForm.patchValue({
+          userName:this.userData.userName,
+          country:this.userData.country ,
+          phoneNumber:this.userData.phoneNumber,
+          email: this.userData.email,
+          confirmPassword: this.userData.confirmPassword,
+          imagePath:this.userData.imagePath ,
+          
 
-//       })
-//       this._ToastrService.success('Updated Successfuly');
-//     }
-
-//   })
-// }
+        })
+        
+      }
+    
+    })
+  }
 
 
 

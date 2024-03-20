@@ -10,7 +10,10 @@ const routes: Routes = [
   {path:'recipes', loadChildren:()=> import('../user/components/recipes/recipes.module').then(m => m.RecipesModule)},
   {path:'favorites', loadChildren:()=> import('../user/components/favorite/favorite.module').then(m => m.FavoriteModule)},
   {path: 'changeuserpassword', component: ChangeUserPasswordComponent},
-  {path: 'profile', component: ProfileComponent}];
+  {path: 'profile', component: ProfileComponent},
+  
+];
+  
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

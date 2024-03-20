@@ -11,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ForgotpasswordComponent {
 
-  isLoading:boolean=false;
+ 
 
   forgotPasswordForm = new FormGroup({
     email: new FormControl(null,[Validators.required, Validators.email]),
