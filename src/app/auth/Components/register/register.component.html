@@ -71,7 +71,7 @@
                     <div class="col-md-6">
                         <div class="input-group mt-3 mb-4">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
-                            <input formControlName="password"[type]="hide?'password':'text'" class="form-control" name="password" placeholder="Enter Your Password" aria-label="password" aria-describedby="basic-addon1">
+                            <input formControlName="password" [type]="hide?'password':'text'" class="form-control" name="password" placeholder="Enter Your Password" aria-label="password" aria-describedby="basic-addon1">
                             <a class="show-password" (click)="this.hide= !this.hide">
                                 <i class="fa-solid" [class]="hide?'fa-eye-slash':'fa-eye'"></i>
                             </a>

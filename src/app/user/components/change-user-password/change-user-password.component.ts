@@ -13,7 +13,9 @@ import { AuthServiceService } from 'src/app/auth/services/auth-service.service';
 export class ChangeUserPasswordComponent {
 
   isLoading:boolean=false;
-  hide:boolean=false;
+  hide:boolean=true;
+  confirmHide:boolean=true;
+  confirmNewHide:boolean=true;
   userpassword = new FormGroup({
     oldPassword: new FormControl(null,[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$')]),
     newPassword: new FormControl(null,[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$')]),
