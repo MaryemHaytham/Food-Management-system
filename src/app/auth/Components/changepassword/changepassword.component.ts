@@ -13,7 +13,7 @@ export class ChangepasswordComponent {
 
   hide:boolean = true;
   confirmHide:boolean = true;
-  isLoading:boolean=false;
+  
 
   changePasswordForm = new FormGroup({
     email: new FormControl(null,[Validators.required, Validators.email]),

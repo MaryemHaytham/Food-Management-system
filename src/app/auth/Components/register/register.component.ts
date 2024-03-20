@@ -17,7 +17,6 @@ export class RegisterComponent {
   imgSrc:any;
 
   hide:boolean = true;
-  isLoading:boolean=false;
   confirmHide:boolean = true;
 
 
@@ -75,19 +74,19 @@ export class RegisterComponent {
 
 
 
-    this.isLoading= true;
+    
     console.log(data);
     this._AuthServiceService.onRegister(myData).subscribe({
       next:(res)=>{
         console.log(res);
       },
       error:(err:any)=>{
-        this.isLoading= false;
+        
         console.log(err);
         this._ToastrService.error(err.error.message,'Error')
       },
       complete:()=>{
-        this.isLoading= false;
+        
         this._ToastrService.success('You successfully Registered','Success')
         this.openDialog();
       }
