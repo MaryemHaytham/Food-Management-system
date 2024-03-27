@@ -1,0 +1,32 @@
+section{
+    min-height: 100vh;
+    border-top-right-radius: 58px;
+    height: 100%;
+    ul{
+        padding: 0px;
+        
+        li{
+            list-style: none;
+           
+            
+            a{
+                padding: 10px ;
+                color: #ffffff8a;
+                text-decoration: none;
+                display: block;
+                span{
+                    margin: 0px 5px;
+                }
+                i{
+                   color: #fff; 
+                }
+                
+            }
+        }
+    }
+    .bg-main-transparent{
+        background-color:rgba(0, 146, 77,0.1) ;
+        color: #fff !important;
+        
+    }
+}

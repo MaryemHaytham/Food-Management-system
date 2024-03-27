@@ -12,7 +12,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$foodManagementSystem-primary: mat.define-palette(mat.$indigo-palette);
+$foodManagementSystem-primary: mat.define-palette(mat.$green-palette,700);
 $foodManagementSystem-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -65,11 +65,70 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     &.main{
       background-color: #4aa35a;
       color: #fff;
+      :disabled{
+        opacity: 0.5;
+      }
     }
+    
     &.second{
       background-color: red;
       color: #fff;
     }
   }
 
+
 }
+
+.show-password{
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+  transform: translate(-25%, -25%);
+}
+
+.text-main{
+  color: #4aa35a !important;
+}
+.text-second{
+  color: #3a3a3d !important;
+}
+.bg-main{
+  background-color:#4aa35a !important;
+}
+.bg-second{
+  background-color:#3a3a3d !important;
+}
+.text-dark2{ 
+  color: #1f263e !important;
+}
+.bg-dark2{
+  background-color: #1f263e !important;
+}
+
+.myPointer{
+  cursor: pointer;
+}
+.header-page{
+  background-image: url(./assets/images/header-bg-svg.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 24vh;
+  border-radius: 15px;
+  background-color: #009247;
+  margin-top: 10px;
+
+}
+
+.outline-main{
+  border: 1px solid #4aa35a;
+  background: #fff;
+  color: #4aa35a;
+  transition: all .5s;
+  &:hover{
+    background: #4aa35a;
+    color: #fff;
+  }
+
+}
+

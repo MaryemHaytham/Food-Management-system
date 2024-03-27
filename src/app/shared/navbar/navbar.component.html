@@ -1,0 +1,32 @@
+<section >
+    <div class="row justify-content-end">
+        <div class="col-4 px-4">
+            <div class="d-flex align-items-center  justify-content-end">
+                <img src="../../../assets/images/girl-nav.png" class="mx-2"  alt="">
+                <h6 class="mb-0">{{userName}}</h6>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>expand_more</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    
+                    <div  class="ng-container" *ngFor = "let item of Menu">
+                      <a [routerLink]="item.link">
+                        <button  *ngIf="item.isActive"  mat-menu-item >
+                          <mat-icon class=" text-success" [class]="item.icon"></mat-icon>
+                          <span>{{item.text}}</span>
+                        </button>
+                      </a> 
+                    </div>
+                    <button (click)="myLogout()"  mat-menu-item>
+                      <mat-icon class=" text-success">logout</mat-icon>
+                      <span>Logout</span>
+                    </button>
+                    
+                    
+                  </mat-menu>
+                  
+            </div>
+
+        </div>
+    </div>
+</section>
