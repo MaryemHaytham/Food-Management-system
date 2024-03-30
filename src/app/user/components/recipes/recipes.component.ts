@@ -17,7 +17,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 export class RecipesComponent {
   tagId:number=0
   categoryId:number=0
-  imagePath: string= 'https://upskilling-egypt.com/';
+  imagePath: string= 'https://upskilling-egypt.com:3006/';
   dummyImage:string='../../../../assets/images/recipes.jpg'
   searchKey:string='';
   pageEvent: PageEvent |any;

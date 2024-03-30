@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./favorite.component.scss']
 })
 export class FavoriteComponent implements OnInit{
-  imagePath: string= 'https://upskilling-egypt.com/';
+  imagePath: string= 'https://upskilling-egypt.com:3006/';
   dummyImage:string='../../../../assets/images/recipes.jpg'
   tableData:any;
   tableRecipe:any[]=[];

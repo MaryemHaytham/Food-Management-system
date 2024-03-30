@@ -19,7 +19,7 @@ export class AddEditRecipeComponent implements OnInit{
   tags:any[]=[];
   categories:ICategory[]=[]
   recipeId :number=0
-  imgUrl:any='https:upskilling-egypt.com/'
+  imgUrl:any='https://upskilling-egypt.com:3006/'
 
   constructor(private _ActivatedRoute:ActivatedRoute,private _router:Router,private _CategoryService:CategoryService,private _HelperService:HelperService,private dialog:MatDialog,private _RecipesService:RecipesService,private _ToastrService:ToastrService){
     console.log(this.recipeId);

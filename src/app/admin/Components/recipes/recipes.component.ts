@@ -16,7 +16,7 @@ import { DeleteRecipeComponent } from './Components/delete-recipe/delete-recipe.
 export class RecipesComponent {
   tagId:number=0
   categoryId:number=0
-  imagePath: string= 'https://upskilling-egypt.com/';
+  imagePath: string= 'https://upskilling-egypt.com:3006/';
   dummyImage:string='../../../../assets/images/recipes.jpg'
   searchKey:string='';
   length = 50;

@@ -7,7 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent {
-  imagePath: string= 'https://upskilling-egypt.com/';
+  imagePath: string= 'https://upskilling-egypt.com:3006/';
   dummyImage:string='../../../../assets/images/profile.jpg'
   constructor(
     public dialogRef: MatDialogRef<UserDetailsComponent>,
